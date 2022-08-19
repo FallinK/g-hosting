@@ -10,6 +10,9 @@ body {
 	font-family: minecraft;
 	font-size: 19px;
 	line-height: 1.4;
+	&._lock {
+		overflow: hidden;
+	}
 }
 
 [class*="__container"] {
@@ -37,10 +40,11 @@ body {
 
 .header {
 	background-color: #222;
-	opacity: 0.98;
+	opacity: 0.9;
+	border: 1px solid;
 	position: fixed;
+	z-index: 2;
 	width: 100%;
-	height: 80px;
 	&__container {
 		height: 100%;
 		display: flex;
@@ -56,14 +60,29 @@ body {
 	&__menu {
 	}
 }
+@media (min-width: 767.98px) {
+	.menu {
+		&__body {
+			position: relative;
+			z-index: 10;
+			display: flex;
+			gap: 36px;
+			flex-direction: row;
+			align-items: center;
+			height: 90px;
+		}
+		&__list {
+			display: flex;
+		}
+	}
+}
 .menu {
 	&__body {
 	}
 	&__icon {
-		
 	}
 	&__list {
-		display: flex;
+		
 	}
 	&__item {
 		&:hover {
@@ -77,5 +96,251 @@ body {
 		padding: 10px 15px;
 		color: #fff;
 		font-size: 14px;
+	}
+}
+@media (max-width: 767.98px) {
+	.menu {
+		&:before {
+			content: "";
+			z-index: 2;
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 60px;
+			background-color: #222;
+		}
+		height: 60px;
+		display: flex;
+		align-items: center;
+		&__icon {
+			z-index: 3;
+			width: 30px;
+			height: 20px;
+			position: relative;
+			cursor: pointer;
+			&:before,&:after, & span {
+				position: absolute;
+				left: 0;
+				width: 100%;
+				height: 2px;
+				background-color: #ffffff;
+			}
+			&:before,&:after {
+				content: '';
+				transition: transform 0.3s ease 0s;
+			}
+			&:before {
+				top: 0;
+			}
+			&:after {
+				bottom: 0;
+			}
+			& span {
+				top: 50%;
+				transform: translate(0, -50%);
+			}
+			&._active {
+				& span {
+					display: none;
+				}
+				&:before {
+					top: 50%;
+					transform: rotate(45deg) translate(0, -50%);
+				}
+				&::after {
+					top: 50%;
+					transform: rotate(-45deg) translate(0, -50%);
+				}
+			}
+		}
+		&__body {
+			position: fixed;
+			top: 0;
+			left: -100%;
+			width: 100%;
+			height: 100%;
+			padding: 80px 30px 30px 30px;
+			background-color: rgba(0, 0, 0, 0.9);
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			overflow: auto;
+			transition: left 0.3s ease 0s;
+			&._active {
+				left: 0px;
+			}
+		}
+		&__item {
+			text-align: center;
+		}
+		&__list {
+			display: flex;
+			flex-direction: column;
+			gap: 15px;
+		}
+	}
+	.header {
+		&__logo {
+			z-index: 3;
+		}
+	}
+}
+.about-us {
+	padding: 90px 0 40px 0;
+	min-height: 100vh;
+	height: 1px;
+	&__container {
+		height: 100%;
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		align-content: center;
+	}
+	&__title {
+		flex: 100% 0 0;
+		margin: 15px 0 0 0;
+		color: #333;
+	}
+	&__body {
+		margin: 70px 0 0 0;
+		display: flex;
+		align-items: center;
+		gap: 30px;
+	}
+	&__image {
+		flex: 50% 0 0;
+		& img {
+			box-shadow: 0px 5px 10px 5px #000;
+			border-radius: 10px;
+			width: 100%;
+		}
+	}
+	&__list {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		font-size: 1.5rem;
+		font-weight: 700;
+		color: #333;
+		& >li {
+			position: relative;
+			padding: 0 0 0 30px;
+			margin: 5px;
+			& >svg {
+				position: absolute;
+				left: -30px;
+				top: 3px;
+				transform: translate(30px, 0);
+				fill: #333;
+			}
+		}
+	}
+}
+.title {
+	font-size: 3rem;
+	font-family: minecraft_bold;
+	text-align: center;
+	letter-spacing: 3px;
+}
+@media (max-width: 991.98px) {
+	.title {
+		font-size: 2rem;
+	}
+}
+@media (max-width: 767.98px) {
+	.title {
+		font-size: 1.3rem;
+	}
+}
+
+@media (max-width: 991.98px) {
+	.about-us {
+		height: auto;
+		&__body {
+			flex-wrap: wrap;
+			justify-content: center;
+		}
+		&__image {
+			flex: 100% 0 0;
+		}
+	}
+}
+@media (max-width: 767.98px) {
+	.about-us {
+		padding: 60px 0 40px 0;
+		&__list {
+			font-size: 1rem;
+			& li {
+				& svg {
+					top: -2px;
+				}
+			}
+		}
+	}
+}
+.peculiarities {
+	background-color: #222;
+	color: #ffffff;
+	&__container {
+	}
+	&__title {
+		padding: 60px 0 0 0;
+	}
+	&__body {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 30px;
+		margin: 40px 0 0 0;
+	}
+	&__item {
+	}
+}
+.item-peculiarities {
+	width: 370px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	&__title {
+		font-family: minecraft_bold;
+		font-size: 1.6rem;
+		text-align: center;
+	}
+
+	&__image {
+		margin: 50px 0 0 0;
+		width: 300px;
+		height: 300px;
+		border-radius: 10px;
+		overflow: hidden;
+		& img {
+			width: 100%;
+		}
+	}
+
+	&__icon {
+		margin: 25px 0 0 0;
+		transform: rotate(90deg);
+		& svg {
+			fill: #ffffff;
+			width: 40px;
+			height: 40px;
+		}
+	}
+
+	&__text {
+		margin: 25px 0 0 0;
+		text-align: center;
+	}
+}
+@media (max-width: 767.98px) {
+	.item-peculiarities {
+		&__title {
+			font-size: 1rem;
+		}
+		&__text {
+			font-size: 1rem;
+		}
 	}
 }
